@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>{% block title %}{% endblock %}</title>
+
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <!-- responsive style -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}" />
+</head>
+<body class="{% if request.path != '/' %}sub_page{% endif %}">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="{% url 'index' %}">
+            <span>
+              Neogym
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item {% if request.path == '/' %} active {% endif %}">
+                  <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+<!--                <li class="nav-item {% block shop_active%}{% endblock %}">-->
+<!--                  <a class="nav-link" href="{% url 'shop' %}">Shop <span class="sr-only">(current)</span></a>-->
+<!--                </li>-->
+<!--                <li class="nav-item {% block news_active%}{% endblock %}">-->
+<!--                  <a class="nav-link" href="{% url 'news' %}">News <span class="sr-only">(current)</span></a>-->
+<!--                </li>-->
+                <li class="nav-item {% if request.path == '/why_us/' %} active {% endif %}">
+                  <a class="nav-link" href="{% url 'why_us' %}"> Why us </a>
+                </li>
+                <li class="nav-item {% if request.path == '/trainer/' %} active {% endif %}">
+                  <a class="nav-link" href="{% url 'trainer' %}"> trainers</a>
+                </li>
+                <li class="nav-item {% if request.path == '/contact/' %} active {% endif %}">
+                  <a class="nav-link" href="{% url 'contact' %}"> Contact Us</a>
+                </li>
+              </ul>
+<!--              <div class="user_option">-->
+<!--                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">-->
+<!--                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>-->
+<!--                </form>-->
+<!--              </div>-->
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    {% block main_content %}{% endblock %}
+  </div>
+{% block content %}{% endblock %}
+
+  <!-- info section -->
+<section class="info_section layout_padding2">
+    <div class="container">
+        <div class="info_items">
+            {% for info in info_section %}
+                {% if not info.item_url or info.item_url == "None" %}
+                    <a href="#" onclick="copyToClipboard('{{ info.copy_info }}'); return false;">
+                {% else %}
+                    <a href="{{ info.item_url }}" target="_blank">
+                {% endif %}
+                        <div class="item">
+                            <div class="">
+                                <img src="{{ info.item_icon.url }}" alt="">
+                            </div>
+                            <div class="detail-box">
+                                <p>{{ info.item_name }}</p>
+                            </div>
+                        </div>
+                    </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<script>
+  function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+      alert("Məlumat kopyalandı: " + text);
+    }).catch(function(err) {
+      console.error("Kopyalama zamanı xəta baş verdi:", err);
+    });
+  }
+</script>
+  <!-- end info_section -->
+
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+
+</body>
+
+</html>

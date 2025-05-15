@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Main page{% endblock %}
+
+{% block main_content %}
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          {% for slider in sliders %}
+          {% if forloop.first %}
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="col-lg-10 col-md-11 mx-auto">
+                <div class="detail-box">
+                  <div>
+                    <h1>
+                      {{ slider.title}}
+                    </h1>
+                    <p>
+                      {{ slider.description}}
+                    </p>
+                    <div class="">
+                      <a href={{slider.url}}>
+                        Click Here
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="carousel-item">
+            <div class="container">
+              <div class="col-lg-10 col-md-11 mx-auto">
+                <div class="detail-box">
+                  <div>
+                    <h1>
+                      {{ slider.title}}
+                    </h1>
+                    <p>
+                      {{ slider.description}}
+                    </p>
+                    <div class="">
+                      <a href={{slider.url}}>
+                        Click Here
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+        <ol class="carousel-indicators">
+          {% for slider in sliders %}
+          {% if forloop.first %}
+          <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter0}}" class="active"></li>
+          {% else %}
+          <li data-target="#carouselExampleIndicators" data-slide-to="{{forloop.counter0}}"></li>
+          {% endif %}
+          {% endfor %}
+        </ol>
+      </div>
+    </section>
+    <!-- end slider section -->
+{% endblock %}
+
+{% block content %}
+  <!-- Us section -->
+  <section class="us_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Why Choose Us
+        </h2>
+      </div>
+
+      <div class="us_container ">
+        <div class="row">
+          {% for why_choose in why_choose_us %}
+          <div class="col-lg-3 col-md-6">
+            <div class="box">
+              <div class="img-box">
+                <img src="{{ why_choose.img_box.url }}"alt="">
+              </div>
+              <div class="detail-box">
+                <h5>
+                  {{why_choose.title}}
+                </h5>
+                <p>
+                  {{why_choose.description}}
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end us section -->
+
+  <!-- heathy section -->
+  <section class="heathy_section layout_padding">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+          <div class="detail-box">
+            <h2>
+              {{about_container.0.title}}
+            </h2>
+            <p>
+              {{about_container.0.description}}
+            </p>
+            <div class="btn-box">
+              <a href={{about_container.0.url}}>
+                READ MORE
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- end heathy section -->
+
+  <!-- trainer section -->
+  <section class="trainer_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our Gym Trainers
+        </h2>
+      </div>
+      <div class="row">
+        {% for trainers in trainers_container %}
+          <div class="col-lg-4 col-md-6 mx-auto">
+    <div class="box">
+      <div class="name">
+        <h5>{{trainers.trainer_name}}</h5>
+      </div>
+      <div class="img-box">
+        <img src="{{ trainers.trainer_image.url }}" alt="">
+      </div>
+      <div class="social_box">
+        <a href="{{ trainers.facebook_url }}"target="_blank">
+          <img src="{{ trainers.facebook_img.url }}" alt="">
+        </a>
+        <a href="{{ trainers.twitter_url }}"target="_blank">
+          <img src="{{ trainers.twitter_img.url }}" alt="">
+        </a>
+        <a href="{{ trainers.instagram_url }}"target="_blank">
+          <img src="{{ trainers.instagram_img.url }}" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- end trainer section -->
+
+  <!-- contact section -->
+  <section class="contact_section">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 px-0">
+          <div class="img-box">
+            <img src="{% static 'images/contact-img.jpg' %}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-6">
+          <div class="form_container pr-0 pr-lg-5 mr-0 mr-lg-2">
+            <div class="heading_container">
+              <h2>Contact Us</h2>
+            </div>
+            <form method="POST">
+              {% csrf_token %}
+
+              <div class="form-group">
+                {{ form.name }}
+              </div>
+
+              <div class="form-group">
+                {{ form.email }}
+              </div>
+
+              <div class="form-group">
+                {{ form.phone }}
+              </div>
+
+              <div class="form-group">
+                {{ form.message }}
+              </div>
+
+              <div class="d-flex">
+                <button type="submit" class="btn btn-primary">Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.js' %}"></script>
+{% endblock %}

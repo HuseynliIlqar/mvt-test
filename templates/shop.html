@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Shop{% endblock %}
+
+{% block content %}
+
+
+
+  <!-- heathy section -->
+  <section class="us_section layout_padding">
+        <div class="container">
+          <div class="heading_container">
+        <h2>
+          NEOGYM ONLINE MARKET
+        </h2>
+      </div>
+          <br><br><br><br><br><br><br><br>
+      <div class="row">
+        <div class="col-md-12 mx-auto">
+        </div>
+      </div>
+    </div>
+    <div class="product-list">
+      {% for shop in shoping %}
+      <div class="product">
+        <img src="{{ shop.product_image.url}}" alt="Product">
+        <h2>{{ shop.name }}</h2>
+        <p>${{ shop.price }}</p>
+        <button>Buy</button>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+  <!-- end heathy section -->
+
+  <style>
+    /* Məhsulları sıralamaq üçün konteyner */
+    .product-list {
+      display: flex; /* Məhsulları üfüqi sıraya düzür */
+      justify-content: center; /* Mərkəzə yerləşdirir */
+      gap: 15px; /* Məhsullar arasındakı boşluğu tənzimləyir */
+      flex-wrap: wrap; /* Yer çatmadıqda məhsulları yeni sətirə keçirir */
+    }
+
+  .detail-box{
+      text-align: center;
+    }
+
+    /* Məhsul kapsulu */
+    .product {
+      width: 200px; /* Məhsul kartının eni */
+      height: 320px; /* Məhsul kartının hündürlüyü */
+      text-align: center; /* Mətnləri mərkəzləşdirir */
+      background: #f9f9f9; /* Açıq boz fon */
+      padding: 10px; /* Daxili boşluğu tənzimləyir */
+      border-radius: 10px; /* Küncləri yumşaldır */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Kölgə effekti */
+      display: flex;
+      flex-direction: column; /* Elementləri yuxarıdan aşağıya düzür */
+      justify-content: space-between; /* Elementlər arasında boşluğu nizamlayır */
+    }
+
+    /* Məhsul şəkli */
+    .product img {
+      width: 100%; /* Şəkilin eni kartın eni ilə eyni olur */
+      height: 180px; /* Şəkilin hündürlüyü */
+      object-fit: contain; /* Şəkili kəsmədən kapsula yerləşdirir */
+      border-radius: 10px; /* Kənarları yumşaldır */
+      background-color: #fff; /* Şəkillər üçün ağ fon */
+    }
+
+    /* Məhsul başlığı */
+    .product h2 {
+      font-size: 14px; /* Başlıq ölçüsünü kiçildir */
+      margin: 5px 0; /* Başlıq ilə digər elementlər arasındakı məsafəni azaldır */
+    }
+
+    /* Məhsul qiyməti */
+    .product p {
+      font-size: 14px; /* Qiymət mətninin ölçüsünü tənzimləyir */
+      font-weight: bold; /* Qalın yazı */
+      color: #333; /* Tünd boz rəng */
+    }
+
+    /* "Buy" düyməsi */
+    .product button {
+      background: #ff6600; /* Narıncı fon */
+      color: white; /* Ağ mətn */
+      padding: 8px 12px; /* Daxili boşluğu azaldır */
+      border: none; /* Çərçivəni silir */
+      border-radius: 5px; /* Yumşaq künclər */
+      cursor: pointer; /* Klik edilə bilən imlec */
+      font-size: 14px; /* Yazı ölçüsü */
+      transition: 0.3s ease; /* Dəyişiklik effekti */
+    }
+
+    /* "Buy" düyməsinə hover edildikdə */
+    .product button:hover {
+      background: #e65c00; /* Daha tünd narıncı */
+      transform: scale(1.05); /* Kiçik böyütmə effekti */
+    }
+  </style>
+{% endblock %}

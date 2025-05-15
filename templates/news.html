@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}News{% endblock %}
+
+{% block content %}
+
+  <style>
+      /* Main content üçün stil */
+  .main-content {
+      text-align: left; /* Yazıları sola hizalayır */
+      margin-left: -15%; margin-right: auto; /* Məzmunu ortada yerləşdirir */
+      max-width: 800px; /* Maksimum eni 800px ilə məhdudlaşdırır */
+  }
+
+  .detail-box{
+  text-align: center;
+  }
+
+  /* Post konteyneri */
+  .post-preview {
+      display: flex; /* Flexbox layout istifadə edir, elementlər yan-yana düzülür */
+      background-color: #; /* Arxa fonu ağ edir */
+      padding: 20px; /* İçəridə 20px boşluq əlavə edir */
+      border-radius: 10px; /* Küncləri yuvarlaqlaşdırır */
+      margin-bottom: 20px; /* Postlar arasında boşluq buraxır */
+      align-items: center; /* Flexbox elementlərini mərkəzə yerləşdirir */
+  }
+
+  /* Şəkil üçün stil */
+  .post-preview img {
+      width: 150px; /* Şəkilin eni 150px */
+      height: 150px; /* Şəkilin boyu 150px */
+      object-fit: cover; /* Şəkili uyğun ölçüdə kəsərək yerinə oturdur */
+      border-radius: 10px; /* Şəkilin künclərini yuvarlaqlaşdırır */
+      margin-right: 20px; /* Şəkil ilə mətn arasında 20px boşluq qoyur */
+  }
+
+  /* Yazı hissəsi */
+  .post-text {
+      flex: 1; /* Qalan boşluğu doldurur */
+  }
+
+  /* Başlıqlar və mətn üçün stil */
+  .post-title {
+      font-size: 20px; /* Başlıq ölçüsünü 20px təyin edir */
+      font-weight: bold; /* Başlığı qalın edir */
+      color: #fff; /* Başlığın rəngini qaranlıq boz edir */
+  }
+
+  .post-meta {
+      font-size: 14px; /* Meta məlumatların ölçüsünü 14px təyin edir */
+      color: #fff; /* Meta məlumatların rəngini daha açıq boz edir */
+      margin: 5px 0; /* Yuxarı və aşağı hissələrə 5px boşluq əlavə edir */
+  }
+
+  .post-content {
+      font-size: 16px; /* Məzmunun ölçüsünü 16px təyin edir */
+      color: #fff; /* Məzmunun rəngini boz edir */
+  }
+  </style>
+
+
+  <!-- heathy section -->
+  <section class="us_section layout_padding">
+        <div class="container">
+          <div class="heading_container">
+        <h2>
+          LATTEST NEWS & UPDATE
+        </h2>
+      </div>
+      <div class="row">
+              <div class="col-md-12 mx-auto">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+     <section class="news_section layout_padding">
+    <div class="container">
+      <div class="main-content">
+        <!-- Post preview 1 -->
+        {% for blog in blog %}
+        <div class="post-preview">
+          <img src="{{blog.image.url}}" alt="Post Image">
+          <div class="post-text">
+            <h2 class="post-title">{{blog.title}}</h2>
+            <p class="post-meta">Posted on {{blog.created_at}}</p>
+            <p class="post-content">
+              {{blog.description}}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+  </section>
+  <!-- end heathy section -->
+
+{% endblock %}
+
+

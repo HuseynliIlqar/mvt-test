@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Trainers{% endblock %}
+
+
+{% block content %}
+  <!-- trainer section -->
+  <section class="trainer_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Our Gym Trainers
+        </h2>
+      </div>
+      <div class="row">
+        {% for trainers in trainers_container %}
+          <div class="col-lg-4 col-md-6 mx-auto">
+    <div class="box">
+      <div class="name">
+        <h5>{{trainers.trainer_name}}</h5>
+      </div>
+      <div class="img-box">
+        <img src="{{ trainers.trainer_image.url }}" alt="">
+      </div>
+      <div class="social_box">
+        <a href="{{ trainers.facebook_url }}"target="_blank">
+          <img src="{{ trainers.facebook_img.url }}" alt="">
+        </a>
+        <a href="{{ trainers.twitter_url }}"target="_blank">
+          <img src="{{ trainers.twitter_img.url }}" alt="">
+        </a>
+        <a href="{{ trainers.instagram_url }}"target="_blank">
+          <img src="{{ trainers.instagram_img.url }}" alt="">
+        </a>
+      </div>
+    </div>
+  </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!-- end trainer section -->
+{% endblock %}
