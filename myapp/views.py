@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Contact, Index_Slider, Why_Choose_Us, About_Container, Trainers_Container, Info_Section,Shop,Blog
 from .forms import ContactForm
 from django.core.mail import send_mail
-from django.conf import settings
 from myproject.settings import EMAIL_HOST_USER
 from django.template.loader import render_to_string
 
