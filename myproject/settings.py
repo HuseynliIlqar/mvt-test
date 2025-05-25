@@ -8,7 +8,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-key')
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    '16.170.201.118'
+    '16.170.201.118',
 ]
 
 INSTALLED_APPS = [
