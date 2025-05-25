@@ -5,14 +5,10 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'dev-secret-key')
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-]
-
-# 3. CSRF trusted origins
-CSRF_TRUSTED_ORIGINS = [
-    'https://mvt-test.onrender.com',
+    '16.170.201.118'
 ]
 
 INSTALLED_APPS = [
