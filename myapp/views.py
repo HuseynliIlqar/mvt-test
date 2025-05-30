@@ -16,10 +16,12 @@ def index(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            name = form.cleaned_data['name']
+            message = form.cleaned_data['message']
             form.save()
             send_mail(
                 subject='Neogym',
-                message='Yeni istifadəçi qeydiyatdan keçdi',
+                message=f'{name} adlı istifadəçi sizə mesaj göndərdi:\n {message}',
                 html_message=render_to_string('success.html'),
                 from_email=EMAIL_HOST_USER,
                 recipient_list=['ilqarhuseynli51@gmail.com'],
@@ -63,11 +65,13 @@ def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
+            name = form.cleaned_data['name']
+            message = form.cleaned_data['message']
             form.save()
             send_mail(
                 subject='Neogym',
-                message='Yeni istifadəçi qeydiyatdan keçdi',
-                html_message='<h1>Yeni İstifadəçi Qeydiyyatı</h1><p>İstifadəçi uğurla qeydiyyatdan keçdi!</p>',
+                message=f'{name} adlı istifadəçi sizə mesaj göndərdi:\n {message}',
+                html_message=render_to_string('success.html'),
                 from_email=EMAIL_HOST_USER,
                 recipient_list=['ilqarhuseynli51@gmail.com'],
             )
